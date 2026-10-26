@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Guía Maestra de Defensa Oral - Métodos Computacionales</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    @page {
+      size: A4;
+      margin: 20mm 15mm 20mm 15mm;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: #1e293b;
+      background: #f1f5f9;
+      padding: 30px 15px;
+      margin: 0 auto;
+      max-width: 920px;
+    }
+    #content {
+      background: #ffffff;
+      padding: 50px 60px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    h1 {
+      color: #0f172a;
+      border-bottom: 2px solid #0284c7;
+      padding-bottom: 10px;
+      font-size: 24px;
+      margin-top: 30px;
+    }
+    h2 {
+      color: #0369a1;
+      font-size: 19px;
+      margin-top: 28px;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 6px;
+    }
+    h3 {
+      color: #0f172a;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+    blockquote {
+      border-left: 4px solid #0284c7;
+      background: #f0f9ff;
+      color: #0369a1;
+      padding: 12px 18px;
+      margin: 16px 0;
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 8px 12px;
+      text-align: left;
+    }
+    th {
+      background: #f8fafc;
+      font-weight: 600;
+      color: #334155;
+    }
+    code {
+      background: #f1f5f9;
+      color: #0f766e;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 14px;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+    pre code {
+      background: transparent;
+      color: inherit;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid #e2e8f0;
+      margin: 28px 0;
+    }
+    .print-bar {
+      position: sticky;
+      top: 10px;
+      background: #0284c7;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+      z-index: 100;
+    }
+    .print-btn {
+      background: white;
+      color: #0284c7;
+      border: none;
+      padding: 8px 16px;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+    .print-btn:hover {
+      background: #e0f2fe;
+    }
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+      #content {
+        box-shadow: none;
+        padding: 0;
+        border-radius: 0;
+      }
+      .print-bar {
+        display: none;
+      }
+      h1, h2, h3 {
+        page-break-after: avoid;
+      }
+      blockquote, table, pre {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="print-bar">
+    <span>💡 <strong>Para exportar a PDF:</strong> Hacé clic en el botón o presioná <code>Ctrl + P</code> y elegí <em>"Guardar como PDF"</em>.</span>
+    <button class="print-btn" onclick="window.print()">🖨️ Descargar en PDF</button>
+  </div>
+  <div id="content"></div>
+
+  <textarea id="raw-md" style="display:none;"># GUÍA MAESTRA DE DEFENSA ORAL Y EXPLICACIÓN INTEGRAL DEL TRABAJO PRÁCTICO
+## Métodos Computacionales (2do Cuatrimestre) — Universidad Torcuato Di Tella
+**Alumno:** Bautista  
+**Objetivo:** Preparación completa para la exposición oral presencial (evaluación de hasta 70 puntos).  
+**Recursos generados:** Presentación en diapositivas (`presentacion.pdf` y `presentacion_slides/`), Figuras de simulación (`figuras/`), y Notebooks resueltos (`ejercicio_1.ipynb` a `ejercicio_8.ipynb`).
+
+---
+
+# PARTE I: DEL ESCÁNER FÍSICO AL CÓDIGO EN PYTHON
+### Explicación conceptual profunda de cada punto del TP, su significado en la vida real y el porqué de las decisiones numéricas
+
+---
+
+### Punto 1: El Fantoma y la Ley de Beer-Lambert (Modelado de Tejidos)
+* **¿Qué es en la vida real?**
+  Cuando un paciente entra a un tomógrafo computado (TC), no podemos &quot;cortarlo&quot; físicamente para ver qué hay adentro. En cambio, le enviamos un haz de rayos X. A medida que los fotones atraviesan el cuerpo, los tejidos los absorben según su densidad:
+  * El **aire** (pulmones o el exterior del cuerpo) casi no frena los rayos $\to$ atenuación $\mu \approx 0$.
+  * El **tejido blando** (músculo, órganos) frena una cantidad intermedia $\to \mu \approx 0.5$.
+  * El **hueso** absorbe una gran cantidad de radiación $\to \mu \approx 1.0$ (o superior).
+  Físicamente, la intensidad que sale del cuerpo se rige por la **Ley de Beer-Lambert**:
+  $$I = I_0 \exp\left( -\int_{\text{rayo}} \mu(r) \, dr \right)$$
+  Donde $I_0$ es la intensidad emitida e $I$ es la intensidad medida por el detector.
+* **¿Qué hace el código realmente?**
+  El tomógrafo aplica el logaritmo natural al cociente de intensidades:
+  $$-\ln\left(\frac{I}{I_0}\right) = \int_{\text{rayo}} \mu(r) \, dr$$
+  ¡Esto linealiza el problema! El sensor mide directamente la **suma (integral)** de las atenuaciones a lo largo de la trayectoria del rayo.
+  En Python, discretizamos el corte 2D en una grilla de $8 \times 8$ píxeles ($X_{\text{fantoma}} \in \mathbb{R}^{8 \times 8}$).
+  * **Decisión de código clave:** Vectorizamos la matriz 2D aplanándola por filas (*row-major*):
+    $$x_k = X_{i,j} \quad \text{con} \quad k = i \cdot n + j \quad (k \in \{0, 1, \dots, 63\})$$
+    Usamos `x_fantoma = X_fantoma.reshape(-1)`. Esto nos permite convertir un problema de imágenes 2D en un problema de **álgebra lineal estándar** en $\mathbb{R}^{64}$.
+
+---
+
+### Punto 2: Máscaras de Rayos y Ecuación Discreta
+* **¿Qué es en la vida real?**
+  Un rayo de rayos X viaja en línea recta en una dirección determinada por un ángulo $\theta$. En un modelo simplificado (rayos paralelos), cada rayo barre una franja y atraviesa ciertos píxeles.
+* **¿Qué hace el código realmente?**
+  Implementamos la función `mascara_rayo(n, direccion, s)`. La recta está parametrizada por un vector unitario normal $(\alpha, \beta)$ y un desplazamiento $s$:
+  $$\text{Píxel } (i, j) \text{ pertenece al rayo si } \alpha \cdot i + \beta \cdot j = s$$
+  La función devuelve una matriz binaria $M_r \in \{0, 1\}^{n \times n}$ que vale $1$ si el píxel es atravesado por el rayo y $0$ si no.
+  * **Medición simulada del rayo:** Calculamos el producto interno elemento a elemento:
+    $$b_r = \sum_{i,j} M_r(i,j) \cdot X(i,j) = (M_r \odot X).\text{sum}()$$
+  * **Pregunta de examen:** *¿Por qué rayos con orientaciones distintas pueden dar exactamente la misma medición?*
+    **Respuesta:** Porque la suma de las atenuaciones de los píxeles que atraviesan puede ser idéntica por pura coincidencia geométrica o simetría del objeto (por ejemplo, si un rayo horizontal cruza dos píxeles de $0.5$ suma $1.0$, y un rayo diagonal cruza un solo píxel de $1.0$ también suma $1.0$). Una sola medición no puede distinguir la distribución espacial interna.
+
+---
+
+### Punto 3: Construcción de la Matriz de Proyección $A$ y el Sinograma
+* **¿Qué es en la vida real?**
+  El tomógrafo emite cientos de rayos desde múltiples ángulos. Cada fila de detectores registra un perfil de atenuación para un ángulo fijo. Si apilamos estos perfiles en una imagen donde el eje horizontal es la posición del detector ($s$) y el eje vertical es el ángulo de rotación ($\theta$), obtenemos el **Sinograma**. Un punto denso dentro del paciente traza una curva senoidal en esta imagen (de ahí su nombre).
+* **¿Qué hace el código realmente?**
+  Construimos la matriz del sistema $A \in \mathbb{R}^{m \times n^2}$ con `matriz_proyeccion(n, direcciones)`:
+  * Cada rayo individual $r$ genera una máscara $M_r$.
+  * Aplanamos la máscara en un vector fila de $64$ componentes: $a_r^T = M_r.\text{reshape}(-1)$.
+  * Apilamos todas las filas para formar $A$.
+  * La ecuación del tomógrafo queda formulada como un sistema lineal clásico:
+    $$\mathbf{b} = A \mathbf{x}$$
+    Donde $\mathbf{x} \in \mathbb{R}^{64}$ es la imagen que queremos descubrir, $A$ es la geometría conocida del escáner y $\mathbf{b} \in \mathbb{R}^m$ son los datos leídos por los sensores.
+  * Probamos 3 configuraciones de rayos:
+    1. $D_2$: 2 direcciones (horizontal y vertical, $\theta \in \{0^\circ, 90^\circ\}$) $\to m = 16$ rayos $\to A_2 \in \mathbb{R}^{16 \times 64}$.
+    2. $D_4$: 4 direcciones ($0^\circ, 45^\circ, 90^\circ, 135^\circ$) $\to m = 44$ rayos $\to A_4 \in \mathbb{R}^{44 \times 64}$.
+    3. $D_7$: 7 direcciones (todos los ángulos discretos posibles en una grilla $8 \times 8$) $\to m = 119$ rayos $\to A_7 \in \mathbb{R}^{119 \times 64}$.
+
+---
+
+### Punto 4: Rango, Nulidad y lo Invisible para el Tomógrafo (SVD)
+* **¿Qué es en la vida real?**
+  ¿Alcanza con medir desde 4 o 7 ángulos para reconstruir el órgano del paciente sin ambigüedades? Si la máquina tiene &quot;puntos ciegos&quot;, podrían existir tumores invisibles o distorsiones que el tomógrafo jamás detectaría.
+* **¿Qué hace el código realmente?**
+  Aplicamos el **Teorema de la Dimensión (Rango-Nulidad)**:
+  $$\operatorname{rango}(A) + \dim(\operatorname{Nul}(A)) = n^2 = 64$$
+  Calculamos los rangos con `np.linalg.matrix_rank`:
+  * Para $A_2$ ($16 \times 64$): $\operatorname{rango}(A_2) = 15 \implies \dim(\operatorname{Nul}(A_2)) = 64 - 15 = 49$.
+  * Para $A_4$ ($44 \times 64$): $\operatorname{rango}(A_4) = 27 \implies \dim(\operatorname{Nul}(A_4)) = 64 - 27 = 37$.
+  * Para $A_7$ ($119 \times 64$): $\operatorname{rango}(A_7) = 43 \implies \dim(\operatorname{Nul}(A_7)) = 64 - 43 = 21$.
+  * **Conclusión matemática fundamental:** ¡En NINGUNO de los casos la solución es única! Incluso con 119 rayos para 64 píxeles (un sistema sobreterminado en apariencia), el rango máximo es 43. Hay rayos redundantes y combinaciones lineales dependientes. La dimensión del espacio nulo siempre es $&gt; 0$.
+* **El vector nulo y la Descomposición en Valores Singulares (SVD):**
+  Usamos `U, S, Vt = np.linalg.svd(A4, full_matrices=True)`:
+  * Los últimos 37 renglones de $V^T$ corresponden a valores singulares $\sigma_i \approx 0$.
+  * Tomamos el último vector $v = V^T[-1, :]$. Comprobamos numéricamente que $\|A_4 v\|_2 \approx 0$ ($10^{-15}$).
+  * Si generamos una imagen alterada $x_{\text{alt}} = x_{\text{fantoma}} + \gamma v$:
+    $$A_4 x_{\text{alt}} = A_4 (x + \gamma v) = A_4 x + \gamma A_4 v = b_4 + 0 = b_4$$
+  * **Sentido físico:** Para el tomógrafo $D_4$, $x$ y $x_{\text{alt}}$ producen **exactamente las mismas mediciones de detector**. El vector $v$ tiene una estructura espacial de alta frecuencia (damero alternado de píxeles positivos y negativos) que se cancela a lo largo de cada rayo. ¡Es un patrón invisible o &quot;fantasma&quot;!
+
+---
+
+### Punto 5: Reconstrucción Ideal y Solución de Norma Mínima (`lstsq`)
+* **¿Qué es en la vida real?**
+  Si el sistema tiene infinitas soluciones porque hay espacio nulo, ¿cuál de todas elige la computadora del tomógrafo cuando ejecuta un algoritmo de inversión?
+* **¿Qué hace el código realmente?**
+  Ejecutamos `np.linalg.lstsq(A, b, rcond=None)[0]`.
+  * Por el teorema fundamental del álgebra lineal, cualquier vector se descompone de forma única como:
+    $$x = x_{\text{fila}} + x_{\text{nulo}} \quad \text{donde} \quad x_{\text{fila}} \in \operatorname{Fil}(A), \; x_{\text{nulo}} \in \operatorname{Nul}(A)$$
+  * La función `lstsq` calcula la solución mediante la **pseudoinversa de Moore-Penrose** ($A^+$), la cual selecciona **la solución de menor norma euclídea** ($\|x\|_2$ mínima).
+  * Como $\|x\|_2^2 = \|x_{\text{fila}}\|^2 + \|x_{\text{nulo}}\|^2$, la solución de norma mínima **anula por completo la componente en el espacio nulo** ($x_{\text{nulo}} = 0$).
+  * **Resultado visual:**
+    * Para $A_2$: El error relativo es del $67.9\%$. La imagen es irreconocible.
+    * Para $A_4$: El error relativo baja al $33.6\%$. Se distingue la forma pero los bordes son borrosos.
+    * Para $A_7$: El error relativo es del $19.4\%$. Se aprecia claramente el fantoma, pero el fondo no es negro puro sino que tiene un &quot;halo&quot; difuso.
+  * **Pregunta de examen:** *Si las mediciones son ideales sin ruido, ¿por qué el residuo es cero ($\|Ax - b\| = 0$) pero la imagen reconstruida no es idéntica a la original?*
+    **Respuesta:** Porque el residuo solo mide si la imagen satisface las proyecciones que el tomógrafo vio ($Ax = b$). Pero como $x_{\text{fantoma}}$ tenía una parte en el espacio nulo ($x_{\text{nulo}} \neq 0$), esa parte fue &quot;amputada&quot; por `lstsq`. El tomógrafo no puede reconstruir lo que no puede iluminar.
+
+---
+
+### Punto 6: Mediciones con Ruido e Incompatibilidad del Sistema
+* **¿Qué es en la vida real?**
+  En un hospital, los detectores electrónicos tienen corriente de fuga, fluctuaciones térmicas y la emisión de fotones de rayos X es un proceso estocástico (Poisson). Los sensores siempre devuelven datos con ruido.
+* **¿Qué hace el código realmente?**
+  Simulamos el ruido sumando un vector aleatorio gaussiano calibrado:
+  $$\mathbf{b}_\sigma = \mathbf{b}_7 + \sigma \cdot \text{escala} \cdot \mathbf{z}, \quad \mathbf{z} \sim \mathcal{N}(0, I), \quad \text{escala} = \sqrt{\frac{1}{m}\sum b_i^2}$$
+  Probamos con niveles de ruido $\sigma \in \{0, 0.01, 0.03, 0.06, 0.10\}$.
+  * **Consecuencia matemática:** En cuanto $\sigma &gt; 0$, el vector ruidoso $\mathbf{b}_\sigma$ se sale del espacio columna de la matriz: $\mathbf{b}_\sigma \notin \operatorname{Col}(A_7)$.
+  * Por lo tanto, el sistema $A_7 x = b_\sigma$ se vuelve **estrictamente incompatible**. No existe ninguna imagen en el universo que coincida exactamente con las lecturas del detector.
+  * **Consecuencia física en la imagen:**
+    1. El residuo ya no es cero: $\|A_7 \hat{x} - b_\sigma\| &gt; 0$.
+    2. Aparecen **píxeles negativos** en la imagen reconstruida (por ejemplo, $-0.15$). Físicamente una atenuación negativa es imposible (significaría que el tejido genera rayos X en lugar de absorberlos), pero el algoritmo lineal no sabe de física y ajusta como puede el ruido.
+
+---
+
+### Punto 7: La Reconstrucción como Proyección Ortogonal en $\mathbb{R}^{119}$
+* **¿Qué es en la vida real y en la geometría?**
+  Como no existe una imagen que dé exactamente $b_\sigma$, el método de mínimos cuadrados busca la imagen $\hat{x}$ cuya proyección predicha $A_7 \hat{x}$ esté **lo más cerca posible** del dato medido $b_\sigma$ en el espacio de mediciones $\mathbb{R}^{119}$.
+* **¿Qué hace el código realmente?**
+  El punto de $\operatorname{Col}(A_7)$ más cercano a $b_\sigma$ es su **proyección ortogonal**.
+  Por propiedades geométricas fundamentales del producto interno, el vector residual:
+  $$\mathbf{r}_\sigma = A_7 \hat{x} - \mathbf{b}_\sigma$$
+  debe ser estrictamente **ortogonal a todo el subespacio columna $\operatorname{Col}(A_7)$**.
+  * Como las columnas de $A_7$ generan $\operatorname{Col}(A_7)$, la ortogonalidad equivale a:
+    $$\langle A_7[:, j], \mathbf{r}_\sigma \rangle = 0 \quad \forall j \iff A_7^T \mathbf{r}_\sigma = \mathbf{0}$$
+  * En el código calculamos `np.linalg.norm(A7.T @ (A7 @ x_hat - b_sigma))` y obtuvimos $1.42 \times 10^{-14}$. ¡Cero exacto a nivel de precisión numérica!
+  * **Distinción crucial para la defensa oral:**
+    * **Proyección tomográfica:** Es el proceso físico donde un haz de rayos X atraviesa el paciente y genera una medición unidimensional (integral de línea).
+    * **Proyección ortogonal:** Es el operador lineal matemático que proyecta un vector de datos de $\mathbb{R}^{119}$ sobre el subespacio vectorial de las mediciones físicamente posibles $\operatorname{Col}(A_7) \subset \mathbb{R}^{119}$.
+
+---
+
+### Punto 8: Optimización Numérica (Gradiente Descendiente y Newton)
+* **¿Qué es en la vida real?**
+  Para imágenes de $8 \times 8$, podemos usar `lstsq` o invertir matrices. Pero en un tomógrafo médico de alta resolución con imágenes de $512 \times 512$ ($262.144$ píxeles), armar la matriz e invertirla requeriría supercomputadoras. En la práctica clínica se usan **métodos de optimización iterativa**.
+* **¿Qué hace el código realmente?**
+  Definimos la función de costo cuadrático:
+  $$E(x) = \frac{1}{2} \|A_7 x - b_\sigma\|^2_2$$
+  * Su gradiente es: $\nabla E(x) = A_7^T(A_7 x - b_\sigma)$.
+  * Su matriz Hessiana es constante y simétrica: $H = A_7^T A_7 \in \mathbb{R}^{64 \times 64}$.
+  * **Gradiente Descendiente:**
+    $$x_{t+1} = x_t - \alpha \nabla E(x_t)$$
+    Calculamos los autovalores de $H$ con `np.linalg.eigvalsh(H)`. El autovalor máximo es $\mu_{\max} \approx 124.6$.
+    * **Cota de estabilidad teórica:** El método converge si y sólo si:
+      $$0 &lt; \alpha &lt; \frac{2}{\mu_{\max}} \approx \frac{2}{124.6} \approx 0.01605$$
+    * Si elegimos $\alpha = 0.010$ (dentro del rango): El costo desciende de manera suave y monótona hasta el óptimo.
+    * Si elegimos $\alpha = 0.0165$ (por encima del límite crítico): La solución oscila salvajemente, el costo diverge a infinito y el algoritmo explota numéricamente.
+  * **Método de Newton:**
+    Resuelve el sistema $H p_t = \nabla E(x_t)$ y actualiza $x_{t+1} = x_t - p_t$.
+    * **Resultado asombroso:** ¡Alcanza el óptimo exacto en **1 sola iteración**!
+    * **Justificación teórica:** El método de Newton aproxima la función por su polinomio de Taylor de segundo orden. Como $E(x)$ es **exactamente una forma cuadrática pura**, el desarrollo de Taylor de orden 2 es idéntico a la función en todo el espacio. Por lo tanto, el mínimo del modelo cuadrático coincide con el mínimo global de $E(x)$ en un único paso.
+
+---
+
+### Punto 9: Regularización Cuadrática de Tikhonov (Prior de Suavidad Tisular)
+* **¿Qué es en la vida real?**
+  El algoritmo de mínimos cuadrados estándar intenta ajustar el ruido de los sensores a cualquier costo, produciendo imágenes con un &quot;ruido de sal y pimienta&quot; que dificulta ver los órganos.
+  Sin embargo, un médico sabe que la anatomía humana no está compuesta por píxeles aleatorios: los órganos tienen bordes continuos y zonas internas suaves y homogéneas. La **regularización de Tikhonov** le inyecta este conocimiento a priori al algoritmo.
+* **¿Qué hace el código realmente?**
+  Construimos la matriz de diferencias finitas $D = \begin{pmatrix} D_h \\ D_v \end{pmatrix} \in \mathbb{R}^{112 \times 64}$:
+  * $D_h$ resta pares de píxeles vecinos horizontales ($X_{i,j+1} - X_{i,j}$).
+  * $D_v$ resta pares de píxeles vecinos verticales ($X_{i+1,j} - X_{i,j}$).
+  * Para una imagen homogénea (constante), $D x_{\text{cte}} = 0$, por lo que la penalización es nula.
+  * Formulamos la nueva función de costo regularizada:
+    $$J_{\sigma, \lambda}(x) = \frac{1}{2} \|A_7 x - b_\sigma\|^2 + \frac{\lambda}{2} \|D x\|^2$$
+    Su gradiente es: $\nabla J(x) = A_7^T(A_7 x - b_\sigma) + \lambda D^T D x$.
+  * **El Dilema del Hiperparámetro $\lambda$ (Trade-off sesgo/varianza):**
+    * Si $\lambda = 0$: Mínimos cuadrados puros. Poca fidelidad anatómica, dominado por artefactos de ruido.
+    * Si $\lambda \approx 0.3$: **Punto óptimo**. El ruido se atenúa drásticamente y las formas internas del fantoma se vuelven nítidas.
+    * Si $\lambda \ge 1.0$: Sobre-regularización. El término de suavidad aplasta todo y la imagen se vuelve una mancha gris borrosa, perdiendo la estructura de los órganos.
+
+---
+
+### Punto 10: Tomografía de Gran Escala ($128 \times 128$) y Principio de Morozov
+* **¿Qué es en la vida real?**
+  Pasamos de un juguete de $8 \times 8$ a un escenario médico realista de $128 \times 128$ ($n^2 = 16.384$ incógnitas). Además, los rayos ya no son líneas binarias: cada entrada $A_{r,j}$ mide la **longitud real del segmento** del rayo $r$ dentro del vóxel $j$.
+* **¿Qué hace el código realmente?**
+  1. **Matrices Dispersas (`scipy.sparse.csr_matrix`):**
+     * Si intentáramos guardar $H = A^T A$ como matriz densa, necesitaríamos $16.384 \times 16.384 = 268.435.456$ números de punto flotante ($&gt; 2$ GB de memoria RAM) y el cálculo de Newton tardaría minutos u horas.
+     * En la realidad, cada rayo cruza menos del $1\%$ de los píxeles. La matriz $A$ es $99\%$ ceros. Usar formato disperso permite evaluar el gradiente $A^T(Ax - b) + \lambda D^T D x$ en fracciones de segundo con un consumo de memoria mínimo.
+  2. **El Problema del Mundo Real:** En la clínica, **no conocemos el paciente real de antemano** (por eso le hacemos la tomografía). No podemos calcular $\|x - x_{\text{fantoma}}\|$ para elegir el mejor $\lambda$.
+  3. **El Principio de Discrepancia de Morozov:**
+     * Los físicos conocen la varianza del ruido del sensor $\delta \approx \|\text{ruido}\|$.
+     * Morozov postula: *&quot;No intentes ajustar las mediciones con mayor precisión que el propio ruido de tus instrumentos&quot;*.
+     * Elegimos el parámetro $\lambda^*$ que logra que el residuo de ajuste coincida con el nivel de ruido estimado:
+       $$\|A \hat{x}_{\lambda^*} - b\| \approx \delta$$
+     * Si el residuo es mucho menor que $\delta$, estás ajustando ruido (overfitting). Si es mucho mayor, estás perdiendo detalles clínicos válidos.
+
+---
+
+### Punto 11: Reflexión Final y Síntesis de Problemas Inversos
+* **¿Por qué la tomografía es el problema inverso paradigmático?**
+  * **Problema Directo:** Conociendo el cuerpo del paciente ($x$) y la física del tomógrafo ($A$), simular lo que marcarán los detectores: $b = Ax$. Es una simple multiplicación matriz-vector, estable y bien condicionada.
+  * **Problema Inverso:** Conociendo únicamente las lecturas de los detectores ($b$) y la máquina ($A$), reconstruir el interior del paciente: hallar $x$.
+  * Es un problema **mal condicionado e indeterminado** (en el sentido de Hadamard):
+    1. Si $\dim(\operatorname{Nul}(A)) &gt; 0$, no hay unicidad (existen infinitas imágenes que dan la misma lectura).
+    2. En presencia de ruido, las mediciones se salen del espacio columna ($b \notin \operatorname{Col}(A)$), perdiendo la existencia de una solución exacta.
+    3. Pequeñas perturbaciones en los sensores pueden inducir errores catastróficos en la imagen reconstruida.
+  * Para resolverlo con éxito, combinamos:
+    * **Álgebra lineal:** Descomposición en subespacios fundamentales, SVD, proyecciones ortogonales.
+    * **Optimización numérica:** Gradiente descendiente y Newton para evitar inversiones directas prohibitivas.
+    * **Regularización matemática:** Incorporación de restricciones a priori (Tikhonov) para transformar un problema mal condicionado en uno estable y clínicamente útil.
+
+---
+---
+
+# PARTE II: GUION DIAPOSITIVA POR DIAPOSITIVA PARA LA EXPOSICIÓN ORAL
+*(13 Diapositivas — Tiempo estimado: 10 a 12 minutos — 70 Puntos)*
+
+---
+
+## Diapositiva 01: Portada
+* **Qué mostrar:** Título del trabajo, datos personales, Universidad Torcuato Di Tella.
+* **Qué decir:**
+  &gt; &quot;Buenos días profesores. Hoy voy a presentar el trabajo práctico integrador de Métodos Computacionales, titulado *De la Física al Algoritmo: Reconstrucción Tomográfica con Métodos Computacionales*.
+  &gt; A lo largo de este proyecto, modelamos matemáticamente el funcionamiento de un tomógrafo computado, traduciendo un fenómeno físico de atenuación de rayos X a un sistema de álgebra lineal. Analizamos por qué es un problema inverso desafiante, estudiamos el espacio nulo mediante SVD, resolvimos el sistema ante mediciones con ruido usando mínimos cuadrados y optimización iterativa, y finalmente aplicamos regularización de Tikhonov y el principio de Morozov para recuperar imágenes médicas de alta calidad. Comencemos con el modelo físico.&quot;
+
+---
+
+## Diapositiva 02: De la Física de Rayos X al Sistema Lineal $b = Ax$
+* **Qué mostrar:** Gráfico del fantoma $8 \times 8$ (`figuras/ej1_fantoma.png`), fórmula de Beer-Lambert y discretización.
+* **Qué decir:**
+  &gt; &quot;El punto de partida es la física de la radiación. Cuando un haz de rayos X atraviesa el cuerpo, los distintos tejidos lo atenúan según su densidad biológica: el aire no absorbe nada, el tejido blando absorbe una cantidad moderada y el hueso absorbe intensamente.
+  &gt; La física modela esto con la Ley de Beer-Lambert exponencial. Al aplicar logaritmo natural al cociente de intensidades medidas por los sensores, la relación se vuelve completamente lineal: cada detector mide la integral de la atenuación a lo largo de la trayectoria del rayo.
+  &gt; Para llevar esto a la computadora, discretizamos una sección 2D en una grilla de $8 \times 8$ píxeles, que llamamos fantoma. Una decisión de código fundamental fue vectorizar esta matriz aplanándola por filas con `reshape(-1)`, de modo que cada píxel $(i, j)$ pasa a ser la componente $k = 8i + j$ de un vector $x \in \mathbb{R}^{64}$. De esta forma, el problema de reconstrucción de imágenes se transforma en el sistema lineal clásico $b = Ax$.&quot;
+* **Pregunta trampa del profesor:** *¿Por qué dos rayos distintos pueden dar la misma medición numérica si cruzan píxeles diferentes?*
+  * **Tu respuesta:** *&quot;Porque el detector solo registra la suma acumulada de las atenuaciones a lo largo del rayo. Por ejemplo, un rayo que atraviesa dos píxeles de tejido blando de $0.5$ suma $1.0$, exactamente igual que un rayo perpendicular que cruza un único píxel de hueso de $1.0$. Por eso una sola dirección no alcanza para determinar la distribución espacial.&quot;*
+
+---
+
+## Diapositiva 03: Geometría de Rayos, Proyecciones y Sinograma
+* **Qué mostrar:** Sinograma (`figuras/ej3_sinograma.png`), esquema de direcciones $D_2, D_4, D_7$.
+* **Qué decir:**
+  &gt; &quot;Para simular el escáner, definimos la función `mascara_rayo`, que genera una matriz binaria con los píxeles interceptados por la recta $\alpha i + \beta j = s$. Aplanando cada máscara formamos las filas de la matriz de proyección $A$.
+  &gt; Comparamos tres configuraciones de escaneo: $D_2$ con solo 2 orientaciones y 16 rayos; $D_4$ con 4 ángulos y 44 rayos; y $D_7$ con 7 orientaciones y 119 rayos.
+  &gt; Si organizamos las mediciones del escáner en una matriz donde las filas son los ángulos de rotación y las columnas son los desplazamientos del detector, obtenemos el sinograma. El sinograma es la huella digital del objeto escaneado: un punto denso en el paciente genera una trayectoria senoidal continua a medida que el gantry gira.&quot;
+* **Pregunta trampa del profesor:** *¿Por qué en $A_7$ tenemos 119 filas si la imagen solo tiene 64 píxeles? ¿El sistema no debería estar sobredeterminado y tener solución única?*
+  * **Tu respuesta:** *&quot;Tener más filas que columnas no garantiza solución única. En tomografía, muchos rayos paralelos o en distintas direcciones son linealmente dependientes entre sí. Para saber si la solución es única no miramos la cantidad de ecuaciones, sino el rango de la matriz, que es el tema de la siguiente diapositiva.&quot;*
+
+---
+
+## Diapositiva 04: ¿Cuándo la Reconstrucción es Única? Teorema Rango-Nulidad
+* **Qué mostrar:** Tabla de rangos y dimensiones del espacio nulo para $A_2, A_4, A_7$.
+* **Qué decir:**
+  &gt; &quot;Aquí aplicamos el Teorema de la Dimensión o Rango-Nulidad: el rango de $A$ más la dimensión del espacio nulo debe ser igual a la cantidad de píxeles, que es 64.
+  &gt; Al calcular los rangos con `np.linalg.matrix_rank`, encontramos que:
+  &gt; $A_2$ tiene rango 15 y nulidad 49.
+  &gt; $A_4$ tiene rango 27 y nulidad 37.
+  &gt; Y sorprendentemente, $A_7$, que tiene 119 rayos, tiene rango 43 y una nulidad de 21.
+  &gt; Como la dimensión del espacio nulo es estrictamente mayor a cero en todos los casos, la conclusión matemática es contundente: ¡ninguno de estos escáneres permite una reconstrucción única! Siempre existen infinitas imágenes que producen exactamente las mismas mediciones en el tomógrafo.&quot;
+* **Pregunta trampa del profesor:** *¿Qué condición teórica se necesitaría para que la reconstrucción fuera matemáticamente única?*
+  * **Tu respuesta:** *&quot;Se requeriría que el espacio nulo sea trivial, es decir, $\dim(\operatorname{Nul}(A)) = 0$, lo cual equivale a que el rango de la matriz sea exactamente igual a la cantidad de píxeles, es decir, $\operatorname{rango}(A) = n^2 = 64$.&quot;*
+
+---
+
+## Diapositiva 05: Lo Invisible para el Tomógrafo: Vectores Nulos y SVD
+* **Qué mostrar:** Gráficos de $x_{\text{fantoma}}$, vector nulo $v$ y la imagen distorsionada $x_{\text{alt}}$ (`figuras/ej4_svd_invisible.png`).
+* **Qué decir:**
+  &gt; &quot;Para entender qué significa físicamente estar en el espacio nulo, utilizamos la Descomposición en Valores Singulares (SVD) sobre la matriz $A_4$.
+  &gt; En la matriz $V^T$, las filas asociadas a valores singulares numéricamente nulos forman una base del espacio nulo. Tomamos el último vector singular $v$ y verificamos que $\|A_4 v\|_2$ es prácticamente cero, del orden de $10^{-15}$.
+  &gt; Al graficar este vector $v$ en forma de imagen $8 \times 8$, vemos un patrón de damero de alta frecuencia, donde píxeles positivos y negativos se alternan de tal manera que la suma a lo largo de cualquier rayo en esas 4 direcciones es exactamente cero.
+  &gt; Si le sumamos este vector al fantoma original creando una imagen alterada $x_{\text{alt}} = x + \gamma v$, el tomógrafo genera exactamente las mismas mediciones: $A_4 x_{\text{alt}} = b_4$. Para el escáner, esa distorsión es un artefacto fantasma totalmente invisible.&quot;
+* **Pregunta trampa del profesor:** *¿Cómo obtuviste exactamente el vector nulo en el código?*
+  * **Tu respuesta:** *&quot;Ejecutamos `U, S, Vt = np.linalg.svd(A4, full_matrices=True)` y extrajimos la última fila de $V^T$ con `v = Vt[-1, :]`. Como $A V = U \Sigma$, las columnas de $V$ (o filas de $V^T$) multiplicadas por los valores singulares nulos en $\Sigma$ dan como resultado vectores en el espacio nulo de $A$.&quot;*
+
+---
+
+## Diapositiva 06: Reconstrucción Ideal y Solución de Norma Mínima (`lstsq`)
+* **Qué mostrar:** Comparativa de reconstrucciones ideales para $A_2, A_4, A_7$ (`figuras/ej5_reconstrucciones_ideales.png`).
+* **Qué decir:**
+  &gt; &quot;En el ejercicio 5 estudiamos la reconstrucción en condiciones ideales sin ruido mediante `np.linalg.lstsq`.
+  &gt; Ante infinitas soluciones posibles, la función `lstsq` de NumPy calcula la solución asociada a la pseudoinversa de Moore-Penrose, que es la de mínima norma euclídea.
+  &gt; Como cualquier vector se descompone ortogonalmente en una componente en el espacio de filas y otra en el espacio nulo, `lstsq` anula por completo la componente del espacio nulo.
+  &gt; Por eso observamos que:
+  &gt; Con $A_2$, el error relativo es del $68\%$ y la imagen está irreconocible.
+  &gt; Con $A_4$, el error baja al $34\%$ y se distingue la morfología general.
+  &gt; Con $A_7$, el error es de solo el $19\%$, logrando una reconstrucción muy fiel, aunque con un halo suave en el fondo.
+  &gt; El dato clave es que para las tres reconstrucciones el residuo numérico es cero: todas explican perfectamente los datos, pero descartan lo que el escáner no pudo iluminar.&quot;
+* **Pregunta trampa del profesor:** *¿Por qué un residuo nulo $\|Ax - b\| = 0$ no garantiza que la imagen reconstruida sea idéntica al fantoma original?*
+  * **Tu respuesta:** *&quot;Porque el residuo cero solo garantiza que la imagen coincide con las proyecciones observadas. Si el fantoma original contenía alguna componente dentro del espacio nulo de $A$, esa componente es invisible para las mediciones y la pseudoinversa la fija en cero para minimizar la norma euclídea.&quot;*
+
+---
+
+## Diapositiva 07: Adquisición Real con Ruido e Incompatibilidad del Sistema
+* **Qué mostrar:** Reconstrucciones con ruido creciente y tabla de residuos vs errores (`figuras/ej6_ruido_vs_error.png`).
+* **Qué decir:**
+  &gt; &quot;En la práctica médica real, los detectores sufren de ruido térmico y fluctuaciones estadísticas de fotones. Simulamos esto agregando ruido gaussiano calibrado $\mathbf{b}_\sigma = \mathbf{b}_7 + \sigma \cdot \text{escala} \cdot \mathbf{z}$, probando valores de $\sigma$ desde el $1\%$ hasta el $10\%$.
+  &gt; En cuanto el ruido entra en juego, el vector de mediciones $b_\sigma$ deja de pertenecer al espacio columna de $A_7$: $b_\sigma \notin \operatorname{Col}(A_7)$.
+  &gt; El sistema se vuelve estrictamente incompatible y el residuo de mínimos cuadrados ya no puede ser cero.
+  &gt; Además, el algoritmo lineal produce píxeles negativos en la imagen reconstruida, lo cual es físicamente imposible para una densidad tisular pero inevitable cuando un modelo lineal intenta absorber el ruido.&quot;
+* **Pregunta trampa del profesor:** *¿Por qué el residuo numérico de mínimos cuadrados es menor que el error real respecto al fantoma?*
+  * **Tu respuesta:** *&quot;Porque el algoritmo de mínimos cuadrados optimiza exclusivamente para ajustar las mediciones disponibles en $\mathbb{R}^m$, sobreajustando el ruido presente en los sensores. Pero no tiene ninguna información sobre la verdadera distribución espacial de la imagen en $\mathbb{R}^{n^2}$.&quot;*
+
+---
+
+## Diapositiva 08: La Reconstrucción como Proyección Ortogonal en $\mathbb{R}^{119}$
+* **Qué mostrar:** Diagrama geométrico de proyección ortogonal y residuo perpendicular (`figuras/ej7_geometria_proyeccion.png`).
+* **Qué decir:**
+  &gt; &quot;El ejercicio 7 aborda la elegante interpretación geométrica de los mínimos cuadrados.
+  &gt; Como el vector ruidoso $b_\sigma$ no está en el subespacio columna de $A_7$, la mejor aproximación posible es su proyección ortogonal sobre $\operatorname{Col}(A_7)$, que es el vector $A_7 \hat{x}$.
+  &gt; Por definición geométrica, el vector residual $r_\sigma = A_7 \hat{x} - b_\sigma$ debe ser ortogonal a todo el subespacio columna. Como las columnas de $A_7$ generan dicho subespacio, el producto interno con cada columna debe anularse:
+  &gt; $$A_7^T r_\sigma = A_7^T(A_7 \hat{x} - b_\sigma) = 0$$
+  &gt; que no son otras que las Ecuaciones Normales de Gauss.
+  &gt; En nuestro código verificamos numéricamente que $\|A_7^T r_\sigma\|_2 = 1.42 \times 10^{-14}$, confirmando la ortogonalidad con precisión de punto flotante de la máquina.&quot;
+* **Pregunta trampa del profesor:** *Explicame la diferencia entre la proyección del tomógrafo y la proyección ortogonal de mínimos cuadrados.*
+  * **Tu respuesta:** *&quot;La proyección tomográfica es un fenómeno físico: la integración de la radiación a lo largo de un rayo que proyecta el objeto 2D en una medición 1D. La proyección ortogonal, en cambio, es un operador geométrico del álgebra lineal que proyecta el vector de mediciones de $\mathbb{R}^{119}$ sobre el subespacio vectorial $\operatorname{Col}(A_7)$ de dimensión 43.&quot;*
+
+---
+
+## Diapositiva 09: Métodos Iterativos: Gradiente Descendiente y Tasa Crítica
+* **Qué mostrar:** Curvas de convergencia de costo y gradiente (`figuras/ej8_convergencia_gd.png`), fórmula de $\alpha_{\text{crítico}}$.
+* **Qué decir:**
+  &gt; &quot;En el ejercicio 8 pasamos de los métodos algebraicos directos a la optimización numérica iterativa. Definimos la función de costo $E(x) = \frac{1}{2}\|A_7 x - b_\sigma\|^2$. Su gradiente es $A_7^T(A_7 x - b_\sigma)$ y su Hessiana es la matriz constante y simétrica $H = A_7^T A_7$.
+  &gt; Implementamos Gradiente Descendiente con la regla $x_{t+1} = x_t - \alpha \nabla E(x_t)$.
+  &gt; La teoría de sistemas dinámicos lineales y formas cuadráticas demuestra que la convergencia está gobernada por el mayor autovalor de la Hessiana, $\mu_{\max}$.
+  &gt; Calculamos los autovalores con `np.linalg.eigvalsh(H)` y obtuvimos $\mu_{\max} \approx 124.6$, lo que define un límite crítico estricto de estabilidad:
+  &gt; $$\alpha &lt; \frac{2}{\mu_{\max}} \approx 0.01605$$
+  &gt; Probamos empíricamente: con $\alpha = 0.010$, el costo converge de forma suave y monótona. Pero si superamos el umbral crítico, por ejemplo con $\alpha = 0.0165$, el método se vuelve inestable, oscila salvajemente y el costo diverge a infinito.&quot;
+* **Pregunta trampa del profesor:** *¿Por qué usaste `eigvalsh` en lugar de `eigvals` en el código?*
+  * **Tu respuesta:** *&quot;Porque la matriz Hessiana $H = A_7^T A_7$ es simétrica y semidefinida positiva. La función `eigvalsh` de NumPy está optimizada con algoritmos especializados para matrices hermíticas/simétricas, garantizando autovalores reales y mayor estabilidad numérica que el solver general.&quot;*
+
+---
+
+## Diapositiva 10: Método de Newton y Comparación de Métodos de Inversión
+* **Qué mostrar:** Tabla comparativa entre `lstsq`, Gradiente Descendiente y Newton.
+* **Qué decir:**
+  &gt; &quot;En el ejercicio 8d implementamos el método de Newton resolviendo el sistema $H p_t = \nabla E(x_t)$ con `np.linalg.solve` y actualizando $x_{t+1} = x_t - p_t$.
+  &gt; Lo notable es que el método de Newton alcanzó la convergencia exacta en **una sola iteración**.
+  &gt; ¿Por qué ocurre esto? Porque el método de Newton se basa en la aproximación cuadrática de Taylor de segundo orden. Como nuestra función de costo $E(x)$ es estrictamente cuadrática con Hessiana constante, el desarrollo de Taylor de orden 2 no es una aproximación local: ¡es la función exacta en todo el espacio! Por lo tanto, el paso de Newton salta directamente al mínimo global en un único movimiento.
+  &gt; Al comparar los métodos: `lstsq` da la solución de norma mínima; Newton llega en 1 paso resolviendo un sistema de $64 \times 64$; y Gradiente Descendiente requiere cientos de iteraciones pero tiene la gran ventaja de que jamás necesita invertir ni almacenar la matriz Hessiana, lo cual es vital para imágenes grandes.&quot;
+* **Pregunta trampa del profesor:** *Si Newton converge en 1 paso, ¿por qué no lo usamos siempre en tomografía clínica de alta resolución?*
+  * **Tu respuesta:** *&quot;Porque en una tomografía médica real de $512 \times 512$ píxeles, la matriz Hessiana tendría $262.144 \times 262.144$ elementos (casi 70 mil millones de números). Armarla e invertirla con `np.linalg.solve` requeriría terabytes de memoria y una complejidad $O(n^3)$ totalmente inviable. En cambio, Gradiente Descendiente solo calcula productos matriz-vector sin armar la Hessiana.&quot;*
+
+---
+
+## Diapositiva 11: Regularización Cuadrática: Prior de Suavidad y Trade-Off
+* **Qué mostrar:** Gráficas de reconstrucción para distintos valores de $\lambda$ (`figuras/ej9_regularizacion_tradeoff.png`), matriz de diferencias $D$.
+* **Qué decir:**
+  &gt; &quot;El problema de mínimos cuadrados puros es que sobreajusta el ruido del sensor. Para corregirlo, en el ejercicio 9 introdujimos la Regularización de Tikhonov incorporando conocimiento anatómico a priori: los tejidos biológicos son continuos y suaves.
+  &gt; Diseñamos la matriz de diferencias finitas $D = [D_h; D_v] \in \mathbb{R}^{112 \times 64}$, que calcula las derivadas espaciales horizontales y verticales restando píxeles vecinos. Para una imagen constante, $D x = 0$.
+  &gt; Formulamos el costo regularizado $J(x) = \frac{1}{2}\|A_7 x - b_\sigma\|^2 + \frac{\lambda}{2}\|Dx\|^2$.
+  &gt; El parámetro $\lambda$ controla el compromiso o trade-off fundamental:
+  &gt; Con $\lambda = 0$, la reconstrucción tiene bajo sesgo pero altísima varianza dominada por ruido.
+  &gt; Con $\lambda = 0.3$, encontramos el balance ideal: el ruido desaparece y los contornos de los órganos quedan perfectamente definidos.
+  &gt; Con $\lambda \ge 1.0$, el exceso de penalización plancha las diferencias entre píxeles, borra las estructuras internas y produce una imagen lavada y sobre-suavizada.&quot;
+* **Pregunta trampa del profesor:** *¿Qué pasa si aplicás la matriz $D$ a una imagen con un borde neto entre dos órganos? ¿No la penaliza indebidamente?*
+  * **Tu respuesta:** *&quot;Sí, la regularización cuadrática $\|Dx\|^2$ penaliza fuertemente los saltos grandes porque eleva las diferencias al cuadrado, lo que tiende a difuminar ligeramente los bordes netos. Por eso en la literatura avanzada de tomografía moderna se utiliza la Regularización por Variación Total (TV), que usa la norma $\ell_1$ de las diferencias para preservar bordes cortantes.&quot;*
+
+---
+
+## Diapositiva 12: Reconstrucción en Alta Resolución ($128 \times 128$) y Principio de Morozov
+* **Qué mostrar:** Pipeline completo de $128 \times 128$ con el sinograma, sin regularizar vs regularizado (`figuras/ej10_pipeline_128.png`).
+* **Qué decir:**
+  &gt; &quot;En el ejercicio 10 escalamos el problema a una resolución diagnóstica de $128 \times 128$ píxeles ($16.384$ incógnitas), utilizando datos continuos de longitud de haz y matrices dispersas en formato CSR.
+  &gt; Pero aquí enfrentamos el desafío clínico real: el fantoma original no se conoce. No podemos calcular el error respecto a la verdad para elegir el mejor $\lambda$.
+  &gt; Para resolver esta selección &#x27;a ciegas&#x27;, implementamos el **Principio de Discrepancia de Morozov**. Morozov establece que el residuo de ajuste $\|A \hat{x}_\lambda - b\|$ debe igualar el nivel de ruido esperado en los detectores, $\delta$.
+  &gt; Si elegimos un $\lambda$ con residuo mucho menor que $\delta$, estamos ajustando ruido espurio. Si el residuo es mucho mayor, estamos perdiendo información clínica.
+  &gt; Al buscar el $\lambda^*$ que satisface la discrepancia de Morozov, logramos reconstruir la estructura anatómica del paciente oculto con máxima nitidez y libre de artefactos de ruido.&quot;
+* **Pregunta trampa del profesor:** *¿Por qué fue indispensable usar matrices dispersas en este ejercicio?*
+  * **Tu respuesta:** *&quot;Porque cada rayo sólo cruza alrededor de 128 a 200 píxeles de los 16.384 totales. Más del $98\%$ de la matriz $A$ son ceros. Guardarla como matriz densa ocuparía cientos de megabytes y $A^T A$ más de 2 GB. Con `scipy.sparse.csr_matrix` sólo almacenamos los elementos no nulos y sus índices, reduciendo el costo de memoria y tiempo de cálculo a fracciones de segundo.&quot;*
+
+---
+
+## Diapositiva 13: Síntesis Conceptual del Proyecto Aplicado
+* **Qué mostrar:** Mapa conceptual de interconexión matemática y conclusiones finales.
+* **Qué decir:**
+  &gt; &quot;Para concluir, este trabajo práctico nos permitió vivenciar cómo el álgebra lineal numérica es el corazón invisible de la tecnología médica moderna:
+  &gt; 1. El Teorema Rango-Nulidad nos explica por qué un escáner necesita rotar en múltiples ángulos: para achicar el espacio nulo y eliminar artefactos ciegos.
+  &gt; 2. La Descomposición SVD nos revela la morfología exacta de los patrones que el tomógrafo es incapaz de percibir.
+  &gt; 3. Las Proyecciones Ortogonales y las Ecuaciones Normales justifican por qué los mínimos cuadrados son la respuesta geométrica natural ante el ruido inevitable de los sensores.
+  &gt; 4. Los Métodos Iterativos de Primer Orden con control de tasa espectral permiten escalar los algoritmos a millones de píxeles sin saturar la memoria.
+  &gt; 5. Y la Regularización de Tikhonov junto con el Principio de Morozov transforman un problema inverso mal condicionado en una herramienta de diagnóstico clínico confiable y robusta.
+  &gt; Muchas gracias por su atención, quedo a disposición para sus preguntas.&quot;
+
+---
+---
+
+# PARTE III: BANCO DE PREGUNTAS TRAMPA DE LOS PROFESORES DE UTDT
+*(Con las respuestas exactas, técnicas y contundentes)*
+
+### Pregunta 1: &quot;¿Por qué decimos que la tomografía computada es un &#x27;problema inverso&#x27;?&quot;
+* **Respuesta:**
+  &quot;En un problema directo, uno conoce las causas y calcula los efectos: por ejemplo, dada la imagen del paciente $x$ y el escáner $A$, calculamos qué medirán los detectores haciendo $b = Ax$.
+  El problema inverso es el camino contrario: a partir de las mediciones externas de los detectores $b$, queremos inferir la causa interna no visible $x$.
+  Es un problema inverso mal condicionado según la definición de Hadamard porque la solución puede no ser única si $\dim(\operatorname{Nul}(A)) &gt; 0$, puede no existir una solución exacta ante ruido ($b \notin \operatorname{Col}(A)$), y pequeñas fluctuaciones en las mediciones pueden generar grandes errores en la imagen.&quot;
+
+### Pregunta 2: &quot;¿Cómo sabés si tu matriz Hessiana $H = A_7^T A_7$ es simétrica y qué propiedad tienen sus autovalores?&quot;
+* **Respuesta:**
+  &quot;Por propiedades del álgebra matricial:
+  $$H^T = (A_7^T A_7)^T = A_7^T (A_7^T)^T = A_7^T A_7 = H$$
+  Por lo tanto es estrictamente simétrica.
+  Además, para cualquier vector no nulo $z$, la forma cuadrática asociada es:
+  $$z^T H z = z^T A_7^T A_7 z = (A_7 z)^T (A_7 z) = \|A_7 z\|_2^2 \ge 0$$
+  Esto demuestra que $H$ es una matriz **semidefinida positiva**. En consecuencia, por el Teorema Espectral, todos sus autovalores son reales y no negativos ($\mu_i \ge 0$).&quot;
+
+### Pregunta 3: &quot;¿De dónde sale la fórmula teórica del paso crítico $\alpha &lt; 2 / \mu_{\max}$ para Gradiente Descendiente?&quot;
+* **Respuesta:**
+  &quot;La iteración de gradiente descendiente sobre la cuadrática es:
+  $$x_{t+1} = x_t - \alpha (H x_t - A^T b) = (I - \alpha H) x_t + \alpha A^T b$$
+  El error $e_t = x_t - x^*$ evoluciona como:
+  $$e_{t+1} = (I - \alpha H) e_t$$
+  Para que el error tienda a cero desde cualquier condición inicial, el radio espectral de la matriz de iteración $G = I - \alpha H$ debe ser estrictamente menor a 1:
+  $$\rho(I - \alpha H) &lt; 1 \iff |1 - \alpha \mu_i| &lt; 1 \quad \forall i$$
+  Como todos los $\mu_i \ge 0$, la condición más restrictiva proviene del autovalor mayor $\mu_{\max}$:
+  $$-1 &lt; 1 - \alpha \mu_{\max} &lt; 1 \implies \alpha \mu_{\max} &lt; 2 \implies \alpha &lt; \frac{2}{\mu_{\max}}$$&quot;
+
+### Pregunta 4: &quot;¿Por qué en el ejercicio 6 aparecen valores negativos de píxeles si la atenuación física no puede ser negativa?&quot;
+* **Respuesta:**
+  &quot;Porque la formulación de mínimos cuadrados estándar resuelve un problema de optimización no restringido en $\mathbb{R}^{n^2}$. El algoritmo busca puramente minimizar la distancia euclídea $\|Ax - b_\sigma\|_2^2$ sin conocimiento físico del dominio. Para absorber el ruido aleatorio del sensor en las ecuaciones normales, ciertas combinaciones lineales fuerzan a algunos píxeles a tomar valores negativos. Para evitarlo en tomografía avanzada, se suele formular un problema de mínimos cuadrados no negativos (NNLS) resolviendo con restricciones $x_i \ge 0$.&quot;
+
+### Pregunta 5: &quot;¿Por qué en el ejercicio 7 se cumple que $A_7^T r_\sigma = 0$?&quot;
+* **Respuesta:**
+  &quot;Porque la solución de mínimos cuadrados $\hat{x}$ es el punto donde se anula el gradiente de la función de costo:
+  $$\nabla E(\hat{x}) = \mathbf{0} \iff A_7^T(A_7 \hat{x} - b_\sigma) = \mathbf{0}$$
+  Como el residuo se define como $r_\sigma = A_7 \hat{x} - b_\sigma$, se deduce directamente que $A_7^T r_\sigma = 0$.
+  Geométricamente, esto significa que el residuo es ortogonal a cada una de las columnas de $A_7$, lo que garantiza que $r_\sigma \in (\operatorname{Col}(A_7))^\perp = \operatorname{Nul}(A_7^T)$.&quot;
+
+### Pregunta 6: &quot;¿Qué diferencia matemática hay entre la regularización de Tikhonov con la matriz identidad $I$ y con la matriz de diferencias $D$?&quot;
+* **Respuesta:**
+  &quot;La regularización de Tikhonov clásica con la identidad penaliza $\|x\|_2^2 = \sum x_i^2$, lo que empuja a todos los píxeles a tener valores cercanos a cero (penalización de energía total).
+  En cambio, al usar la matriz de diferencias $D$, penalizamos $\|Dx\|_2^2 = \sum (x_i - x_j)^2$, lo que penaliza los gradientes espaciales o cambios bruscos entre vecinos. Esto permite que la imagen tenga valores altos y contrastados siempre y cuando las zonas sean homogéneas, preservando la anatomía de los órganos sin achicar arbitrariamente sus densidades.&quot;
+
+### Pregunta 7: &quot;¿Por qué el criterio de parada del gradiente descendiente en los ejercicios 8 y 9 no debe usar el error respecto al fantoma original?&quot;
+* **Respuesta:**
+  &quot;Porque en una aplicación real de tomografía médica, la imagen del paciente es desconocida. Usar el error respecto a la imagen verdadera sería trampa (&#x27;data leakage&#x27;).
+  Un criterio de parada legítimo y computable en la práctica debe basarse exclusivamente en magnitudes accesibles durante la optimización, como la norma del gradiente ($\|\nabla J(x_t)\| &lt; \epsilon$) o el cambio relativo en la función de costo ($|J_{t} - J_{t-1}| / J_t &lt; \tau$).&quot;
+
+---
+---
+
+# PARTE IV: DICCIONARIO RÁPIDO DE CONCEPTOS CLAVE (SUPERVIVENCIA EN 1 LÍNEA)
+
+1. **Fantoma:** Imagen de prueba sintética con geometrías y densidades conocidas utilizada para calibrar algoritmos de reconstrucción tomográfica.
+2. **Sinograma:** Matriz 2D que recopila las proyecciones del escáner en función del ángulo de rotación $\theta$ y la posición del sensor $s$.
+3. **Rango de $A$:** Cantidad de direcciones de información linealmente independientes que el tomógrafo es capaz de capturar.
+4. **Espacio Nulo de $A$:** Conjunto de todas las imágenes o patrones espaciales que producen mediciones exactamente iguales a cero en el tomógrafo (patrones invisibles).
+5. **Solución de Norma Mínima (`lstsq`):** La solución del sistema que elimina cualquier componente en el espacio nulo, minimizando la energía $\|x\|_2$.
+6. **Incompatibilidad del Sistema:** Situación en la cual el vector de mediciones ruidosas $b_\sigma$ no pertenece al espacio columna $\operatorname{Col}(A)$, haciendo imposible que $Ax = b$ tenga solución exacta.
+7. **Proyección Ortogonal:** El punto dentro de un subespacio que minimiza la distancia euclídea a un vector externo, generando un vector de error perpendicular.
+8. **Ecuaciones Normales ($A^T A x = A^T b$):** Sistema algebraico que caracteriza de forma exacta la solución de mínimos cuadrados.
+9. **Matriz Hessiana ($H = A^T A$):** Matriz simétrica y semidefinida positiva que describe la curvatura de la función de costo cuadrático.
+10. **Tasa de Aprendizaje Crítica ($\alpha &lt; 2/\mu_{\max}$):** Umbral superior de estabilidad para que el método de Gradiente Descendiente no diverja.
+11. **Matriz de Diferencias $D$:** Operador discreto que aproxima las derivadas espaciales entre píxeles adyacentes para cuantificar la falta de suavidad.
+12. **Principio de Discrepancia de Morozov:** Criterio para seleccionar el hiperparámetro de regularización $\lambda^*$ haciendo que el residuo de ajuste iguale la magnitud estimada del ruido de los instrumentos.
+13. **Formato Disperso (CSR - *Compressed Sparse Row*):** Estructura de datos en memoria que solo almacena los elementos no nulos de una matriz, permitiendo operaciones eficientes en alta resolución.
+</textarea>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const md = document.getElementById("raw-md").value;
+      const htmlContent = marked.parse(md);
+      const container = document.getElementById("content");
+      container.innerHTML = htmlContent;
+
+      renderMathInElement(container, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "$", right: "$", display: false},
+          {left: "\\(", right: "\\)", display: false},
+          {left: "\\[", right: "\\]", display: true}
+        ],
+        throwOnError: false
+      });
+    });
+  </script>
+</body>
+</html>
