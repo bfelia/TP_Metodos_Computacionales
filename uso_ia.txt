@@ -1,0 +1,35 @@
+USO DE IA PARA EL TP
+EJ 1
+Dudas de sintaxis de numpy, uso de np.all para comparar matrices elemento a elemento y np.where para ubicar el píxel modificado
+
+EJ 2
+Consultamos como hacer el producto elemento a elemento y suma para hacer (Mr * X).sum(). prints para alinear los resultados de los 5 rayos de forma linda y clara
+
+EJ 3
+Consultamos como hacer la eliminación de duplicados y el ordenamiento con sorted(set()) y el uso de np.allclose para comparar las sumas de filas y columnas contra el vector b
+
+EJ 4
+Función np.linalg.matrix_rank para calcular el rango de las matrices
+Como extraer el vector del espacio nulo a partir de las ultimas filas de Vt en np.linalg.svd 
+Configuracion del colormap coolwarm centrado en cero
+
+EJ 5
+Consulta sobre que devuelve np.linalg.lstsq en sistemas con infinitas soluciones y formato de tabla comparativa
+
+EJ 6:
+Consultamos la sintaxis para fijar la semilla y generar ruido con np.random.normal. y tambien sobre por que minimos cuadrados puede devolver coeficientes negativos al haber ruido
+
+EJ 7
+Consultamos la sintaxis para calcular la norma euclídea con np.linalg.norm
+
+EJ 8
+Consultamos cual era la funcion np.linalg.eigvalsh para obtener los autovalores de la Hessiana y verificar la cota de estabilidad 2 / mu_max y el uso de np.linalg.solve para resolver el paso de Newton 
+
+EJ 9
+Consultamos la logica de indexacion para armar las filas de diferencias horizontales y verticales de la matriz D, la estructuración del bucle de gradiente descendiente con el término de regularizacion y el armado de la grilla de subplots con misma escala de color y etiquetas de error relativo.
+
+EJ 10
+Consultamos sobre el uso de scipy.sparse para construir y operar con la matriz D de 128 x 128 sin saturar la memoria, sobre los parametros de plt.imshow para el sinograma y tambien sobre el ajuste del paso de aprendizaje e iteraciones para asegurar la convergencia
+
+EJ 11
+Le pedimos a la IA que revise simplemente la redacción y claridad en las respuestas y le consultamos como armar la tabla comparativa que hicimos.
