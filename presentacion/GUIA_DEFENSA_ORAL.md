@@ -177,7 +177,7 @@
 
 ### Punto 10: Tomografía de Gran Escala ($128 \times 128$) y Principio de Morozov
 * **¿Qué es en la vida real?**
-  Pasamos de un juguete de $8 \times 8$ a un escenario médico realista de $128 \times 128$ ($n^2 = 16.384$ incógnitas). Además, los rayos ya no son líneas binarias: cada entrada $A_{r,j}$ mide la **longitud real del segmento** del rayo $r$ dentro del vóxel $j$.
+  Pasamos de un juguete de $8 \times 8$ a un escenario médico realista de $128 \times 128$ ($n^2 = 16.384$ incógnitas). Además, los rayos ya no son líneas binarias: cada entrada $A_{r,j}$ mide la **longitud real del segmento** del rayo $r$ dentro del píxel $j$.
 * **¿Qué hace el código realmente?**
   1. **Matrices Dispersas (`scipy.sparse.csr_matrix`):**
      * Si intentáramos guardar $H = A^T A$ como matriz densa, necesitaríamos $16.384 \times 16.384 = 268.435.456$ números de punto flotante ($> 2$ GB de memoria RAM) y el cálculo de Newton tardaría minutos u horas.
